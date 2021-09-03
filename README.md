@@ -32,3 +32,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Configs
+
+Depois do projeto criado pelo comando [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). 
+Precisamos agora configurar o [`typescript`](https://nextjs.org/docs/basic-features/typescript)
+####Typescript
+1. Adicionar o arquivo tsconfig.json
+2. Rodar comando  yarn add --dev typescript @types/react @types/node
+3. rodar o projeto **yarn dev** para executar o projeto e ele configurar o tsconfig automaticamente
+4. Mudar arquivo index para tsx
+5. [Opcional] no tsconfig pode setar o strict como true para ele deixar os arquivos fortemenet tipados(ex: não aceitando any)
+
+####Configurar o editorconfig
+1. adicione o arquivo .editorconfig no seu codigo para que todos os novos arquivos que forem cirados seguirem um padrão
+2. 
+``` 
+root = true
+
+[*]
+indent_style = spaces
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
