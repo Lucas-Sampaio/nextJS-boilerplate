@@ -87,4 +87,22 @@ insert_final_newline = true
         "@typescript-eslint/explicit-module-boundary-types": "off" //permite a ts inferi o tipo das props
     }
  ``` 
-   
+ 
+ #### Prettier
+ 1. instalar o [`prettier`](https://prettier.io/docs/en/install.html)
+ 2. instalar o [plugin eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)  
+ 3. adicionar ao eslintrc.config
+  ```
+  {
+  "extends": ["plugin:prettier/recommended"]
+  }
+```
+4. criar arquivo .vscode/settings.json para vincular o prettier ao vs code quando salvar
+ ```
+ {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave":{
+        "source.fixAll.eslint": true
+    }
+}
+```
