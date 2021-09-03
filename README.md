@@ -63,13 +63,13 @@ insert_final_newline = true
 1. instalar o [`eslint`](https://eslint.org/) no vs code de Dirk Baeumer e habilitar
 2. rodar o comando npx eslint --init
 3. respostas que usei no questionario para configurar
-√ How would you like to use ESLint? · To check syntax and find problems    
-√ What type of modules does your project use? · js modules (import/export)
-√ Which framework does your project use? · react
-√ Does your project use TypeScript? ·  Yes
-√ Where does your code run? · browser
-√ what format do you want your config file? · json
-√ Would you like to install them now with npm? · No (se tiver usando o npm marque yes)
+- √ How would you like to use ESLint? · To check syntax and find problems    
+- √ What type of modules does your project use? · js modules (import/export)
+- √ Which framework does your project use? · react 
+- √ Does your project use TypeScript? ·  Yes
+- √ Where does your code run? · browser
+- √ what format do you want your config file? · json
+- √ Would you like to install them now with npm? · No (se tiver usando o npm marque yes)
 4.Caso use o yarn rode > yarn add --dev eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
 5. instalar [plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) para webhook que nem a [documentação](https://www.npmjs.com/package/eslint-plugin-react-hooks)
 6. Adicionar essas configs no arquivo eslint
