@@ -32,3 +32,77 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Configs
+
+Depois do projeto criado pelo comando [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). 
+Precisamos agora configurar o [`typescript`](https://nextjs.org/docs/basic-features/typescript)
+#### Typescript
+1. Adicionar o arquivo tsconfig.json
+2. Rodar comando > yarn add --dev typescript @types/react @types/node
+3. rodar o projeto **yarn dev** para executar o projeto e ele configurar o tsconfig automaticamente
+4. Mudar arquivo index para tsx
+5. [Opcional] no tsconfig pode setar o strict como true para ele deixar os arquivos fortemenet tipados(ex: não aceitando any)
+
+#### Configurar o editorconfig
+1. adicione o arquivo .editorconfig no seu codigo para que todos os novos arquivos que forem cirados seguirem um padrão
+2. 
+``` 
+root = true
+
+[*]
+indent_style = spaces
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
+#### Eslint
+1. instalar o [`eslint`](https://eslint.org/) no vs code de Dirk Baeumer e habilitar
+2. rodar o comando npx eslint --init
+3. respostas que usei no questionario para configurar
+- √ How would you like to use ESLint? · To check syntax and find problems    
+- √ What type of modules does your project use? · js modules (import/export)
+- √ Which framework does your project use? · react 
+- √ Does your project use TypeScript? ·  Yes
+- √ Where does your code run? · browser
+- √ what format do you want your config file? · json
+- √ Would you like to install them now with npm? · No (se tiver usando o npm marque yes)
+4.Caso use o yarn rode > yarn add --dev eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
+5. instalar [plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) para webhook que nem a [documentação](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+6. Adicionar essas configs no arquivo eslint
+ ``` 
+ "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+   "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/prop-types":"off", //desabilita o prop-types do react será usado do typescript
+        "react/react-in-jsx-scope":"off", //desabilita a importação do react nos arquivos no next ja importa globalmente
+        "@typescript-eslint/explicit-module-boundary-types": "off" //permite a ts inferi o tipo das props
+    }
+ ``` 
+ 
+ #### Prettier
+ 1. instalar o [`prettier`](https://prettier.io/docs/en/install.html)
+ 2. instalar o [plugin eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)  
+ 3. adicionar ao eslintrc.config
+  ```
+  {
+  "extends": ["plugin:prettier/recommended"]
+  }
+```
+4. criar arquivo .vscode/settings.json para vincular o prettier ao vs code quando salvar
+ ```
+ {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave":{
+        "source.fixAll.eslint": true
+    }
+}
+```
