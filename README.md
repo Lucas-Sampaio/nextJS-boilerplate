@@ -106,3 +106,33 @@ insert_final_newline = true
     }
 }
 ```
+ #### Husky git hook
+ Serve para verificar alguns padões de codigo antes de permitir o commit
+ 1. Instalar o [`husky`](https://typicode.github.io/husky/#/?id=install)
+ 2. rodar -> yarn husky install   
+ 3. rodar -> npx husky-init
+ 4.  no package.json adicionar 
+ ```
+   "scripts": {
+    "lint": "eslint src --max-warnings=0",
+    "postinstall": "husky install"
+  },
+  ```
+  5. Adicionar [lint-staged](https://github.com/okonet/lint-staged#examples) pelo comando -> yarn add --dev lint-staged
+  6. adicionar no package.json
+   ```
+    "lint-staged": {
+    "src/**/*": [
+      "yarn lint --fix"
+    ]
+  }
+  ```
+  7. no .husky/ pre-commit
+  ````
+  #!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+
+npx --no-install lint-staged
+
+  ````
