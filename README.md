@@ -45,8 +45,9 @@ Precisamos agora configurar o [`typescript`](https://nextjs.org/docs/basic-featu
 5. [Opcional] no tsconfig pode setar o strict como true para ele deixar os arquivos fortemenet tipados(ex: não aceitando any)
 
 #### Configurar o editorconfig
-1. adicione o arquivo .editorconfig no seu codigo para que todos os novos arquivos que forem cirados seguirem um padrão
-2. 
+1. adicione o arquivo .editorconfig no seu codigo para que todos os novos arquivos que forem criados seguirem um padrão
+2. [instalar no vs code]https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+3. 
 ``` 
 root = true
 
@@ -136,3 +137,62 @@ insert_final_newline = true
 npx --no-install lint-staged
 
   ````
+  
+  #### Jest
+  1. Instalar o [`jest`](https://jestjs.io/pt-BR/docs/getting-started) com o babel e typescript e o @types/jest
+  2. Adicionar no arquivo eslintrc 
+   ```
+    "env": {
+        "jest":true,
+        "node":true
+        }
+   ```
+   3. adicionar arquivo jest.config.js
+   ```
+   module.exports = {
+  testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts(x)?', '!src/**/stories.tsx'],
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
+  modulePaths: ['<rootDir>/src/'],
+  }
+
+   ```
+   4. adicionar arquivo .babelrc
+   ```
+   {
+  "presets": ["next/babel", "@babel/preset-typescript"],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true,
+        "displayName": true
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "ssr": false,
+            "displayName": false
+          }
+        ]
+      ]
+    }
+  }
+}
+   ```
+   5. adicionar arquivo .jest/setup.ts
+   ```
+   import '@testing-library/jest-dom'
+   import 'jest-styled-components'
+   ```
+   6.adicionar no package.json ``` "scripts": { "test":"jest" }```
+   7. instalar o [react testing library](https://testing-library.com/docs/react-testing-library/intro/) 
+   comando -> yarn add --dev  @testing-library/react  @testing-library/jest-dom
+ 
