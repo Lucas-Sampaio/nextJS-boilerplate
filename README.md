@@ -196,3 +196,58 @@ npx --no-install lint-staged
    7. instalar o [react testing library](https://testing-library.com/docs/react-testing-library/intro/) 
    comando -> yarn add --dev  @testing-library/react  @testing-library/jest-dom
  
+ #### styled components
+ 1. instalar o [styled components](https://styled-components.com/) junto com o [babel-plugin](https://github.com/styled-components/babel-plugin-styled-components)
+ 2. instalar -> yarn add --dev  @types/styled-components
+ 3. adicionar _document.tsx na pasta page
+ ```
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+
+  render() {
+    return (
+      <Html lang="pt-BR">
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+
+ ```
